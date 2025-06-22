@@ -1,0 +1,6 @@
+[submodule "ai-csv-agent-frontend"]
+	path = ai-csv-agent-frontend
+	url = https://github.com/GlrtDev/ai-csv-agent-frontend.git
+[submodule "ai-csv-agent-backend"]
+	path = ai-csv-agent-backend
+	url = https://github.com/GlrtDev/ai-csv-agent-backend.git

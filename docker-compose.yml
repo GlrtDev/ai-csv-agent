@@ -1,0 +1,30 @@
+services:
+  # Backend Service (FastAPI)
+  backend:
+    build:
+      context: ./ai-csv-agent-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    # volumes:
+    #   - ./ai-csv-agent-backend:/app
+    environment:
+      - APP_ENV=development
+      - PORT=8000
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+  # Frontend Service (Vite/React)
+  frontend:
+    build:
+      context: ./ai-csv-agent-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:4173"
+    volumes:
+      - ./ai-csv-agent-frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    environment:
+      - API_BASE_URL=http://localhost:8000
+    command: yarn start --host 0.0.0.0
